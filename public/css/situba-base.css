@@ -1,0 +1,40 @@
+/*
+ * Token dan komponen yang dipakai bersama oleh panel admin dan aplikasi pengguna.
+ */
+
+:root {
+    --ink: #0f172a;
+    --ink-soft: #334155;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --line-soft: #f1f5f9;
+    --bg: #f8fafc;
+    --panel: #ffffff;
+    --accent: #16a34a;
+    --accent-ink: #15803d;
+    --accent-wash: #dcfce7;
+    --sand: #fbbf24;
+    --high: #dc2626;
+    --high-wash: #fee2e2;
+    --mid: #b45309;
+    --mid-wash: #fef3c7;
+    --low: #15803d;
+    --low-wash: #dcfce7;
+    --radius: 8px;
+    --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* Level prioritas: kotak warna kecil + teks, bukan pil berwarna */
+.lvl { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; font-size: 13px; white-space: nowrap; }
+.lvl::before { content: ''; width: 9px; height: 9px; border-radius: 2px; background: var(--muted); flex-shrink: 0; }
+.lvl.is-tinggi { color: var(--high); } .lvl.is-tinggi::before { background: var(--high); }
+.lvl.is-sedang { color: var(--mid); } .lvl.is-sedang::before { background: var(--sand); }
+.lvl.is-rendah { color: var(--low); } .lvl.is-rendah::before { background: #22c55e; }
+.lvl.is-belum { color: var(--muted); } .lvl.is-belum::before { background: #cbd5e1; }
+
+/* faktor prioritas */
+.u-factor { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+.u-factor .row1 { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.u-factor .t { font-weight: 600; color: var(--ink); line-height: 1.3; }
+.u-factor .pts { flex-shrink: 0; font-size: 12.5px; font-weight: 700; color: var(--ink-soft); background: var(--line-soft); border-radius: 4px; padding: 1px 7px; }
+.u-factor .d { font-size: 13px; color: var(--muted); margin-top: 2px; }

@@ -1,0 +1,225 @@
+/*
+ * Tema panel admin Situmbuh.
+ * Dibangun di atas Bootstrap 5 (dari bundel Mazer yang sudah ada) dengan palet sendiri:
+ * satu warna aksen, permukaan netral, tanpa bayangan dekoratif.
+ */
+
+:root {
+    --ink: #0f172a;
+    --ink-soft: #334155;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --line-soft: #f1f5f9;
+    --bg: #f8fafc;
+    --panel: #ffffff;
+    --accent: #16a34a;
+    --accent-ink: #15803d;
+    --accent-wash: #dcfce7;
+    --sand: #fbbf24;
+    --high: #dc2626;
+    --high-wash: #fee2e2;
+    --mid: #b45309;
+    --mid-wash: #fef3c7;
+    --low: #15803d;
+    --low-wash: #dcfce7;
+    --radius: 8px;
+    --side-w: 252px;
+
+    --bs-primary: #16a34a;
+    --bs-primary-rgb: 22, 163, 74;
+    --bs-link-color: #16a34a;
+    --bs-link-color-rgb: 22, 163, 74;
+    --bs-link-hover-color: #15803d;
+    --bs-body-font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --bs-body-color: #334155;
+    --bs-body-bg: #f8fafc;
+    --bs-border-color: #e2e8f0;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body.adm-body {
+    background: var(--bg);
+    color: var(--ink-soft);
+    font-family: var(--bs-body-font-family);
+    font-size: 14px;
+    line-height: 1.5;
+    font-feature-settings: 'tnum' 1;
+}
+
+.adm-body h1, .adm-body h2, .adm-body h3, .adm-body h4, .adm-body h5, .adm-body h6 {
+    color: var(--ink);
+    font-family: var(--bs-body-font-family);
+    letter-spacing: -0.01em;
+}
+
+/* ---------------------------------------------------------------- kerangka */
+.adm-side {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: var(--side-w);
+    background: var(--ink);
+    color: #cbd5e1;
+    display: flex;
+    flex-direction: column;
+    z-index: 1040;
+    transition: transform .2s ease;
+}
+
+.adm-brand { padding: 22px 22px 18px; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+.adm-brand strong { display: block; color: #fff; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+.adm-brand span { font-size: 12px; color: #94a3b8; }
+
+.adm-nav { flex: 1; overflow-y: auto; padding: 14px 12px 16px; }
+.adm-nav-group { margin-bottom: 18px; }
+.adm-nav-label {
+    padding: 0 10px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #94a3b8;
+}
+.adm-nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    margin-bottom: 1px;
+    border-left: 3px solid transparent;
+    border-radius: 0 6px 6px 0;
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 500;
+}
+.adm-nav a i { font-size: 15px; width: 18px; text-align: center; opacity: .85; }
+.adm-nav a:hover { color: #fff; background: rgba(255, 255, 255, .05); }
+.adm-nav a.is-active { color: #fff; background: rgba(255, 255, 255, .08); border-left-color: var(--sand); }
+
+.adm-user { padding: 14px 18px; border-top: 1px solid rgba(255, 255, 255, .08); display: flex; align-items: center; gap: 10px; }
+.adm-user-name { flex: 1; min-width: 0; color: #fff; font-weight: 600; font-size: 13px; line-height: 1.25; }
+.adm-user-name small { display: block; font-weight: 400; color: #94a3b8; font-size: 12px; }
+.adm-user button { background: none; border: 1px solid rgba(255, 255, 255, .18); color: #cbd5e1; border-radius: 6px; padding: 5px 9px; font-size: 12px; }
+.adm-user button:hover { color: #fff; border-color: rgba(255, 255, 255, .4); }
+
+.adm-main { margin-left: var(--side-w); min-height: 100vh; }
+.adm-top { display: none; align-items: center; gap: 12px; padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 1030; }
+.adm-top button { border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 4px 9px; color: var(--ink); }
+.adm-content { padding: 28px 32px 48px; max-width: 1280px; }
+
+.adm-scrim { display: none; }
+
+@media (max-width: 991.98px) {
+    .adm-side { transform: translateX(-100%); }
+    .adm-side.is-open { transform: none; }
+    .adm-scrim.is-open { display: block; position: fixed; inset: 0; background: rgba(21, 48, 59, .45); z-index: 1035; }
+    .adm-main { margin-left: 0; }
+    .adm-top { display: flex; }
+    .adm-content { padding: 20px 16px 40px; }
+}
+
+/* ---------------------------------------------------------------- komponen halaman */
+.adm-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+.adm-head h1 { font-size: 24px; font-weight: 700; margin: 0; }
+.adm-head p { margin: 2px 0 0; color: var(--muted); }
+.adm-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.adm-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 13px; border-radius: 6px; font-weight: 600; font-size: 13px;
+    border: 1px solid var(--line); background: #fff; color: var(--ink); text-decoration: none;
+}
+.adm-btn:hover { border-color: #b4c4c9; color: var(--ink); }
+.adm-btn.is-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.adm-btn.is-primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); color: #fff; }
+
+.adm-panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
+.adm-panel + .adm-panel { margin-top: 20px; }
+.adm-panel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line-soft); }
+.adm-panel-head h2 { font-size: 15px; font-weight: 700; margin: 0; }
+.adm-panel-head span, .adm-panel-head a { font-size: 12.5px; color: var(--muted); }
+.adm-panel-body { padding: 16px 18px; }
+.adm-note { font-size: 12.5px; color: var(--muted); margin: 0; }
+
+/* ringkasan angka: satu panel dengan pemisah, bukan deretan kartu berikon */
+.adm-kpis { display: grid; grid-template-columns: repeat(4, 1fr); margin-bottom: 20px; }
+.adm-kpi { padding: 18px 20px; border-right: 1px solid var(--line-soft); }
+.adm-kpi:last-child { border-right: 0; }
+.adm-kpi-label { font-size: 12.5px; font-weight: 600; color: var(--muted); }
+.adm-kpi-value { font-size: 32px; font-weight: 700; line-height: 1.15; color: var(--ink); margin: 4px 0 2px; letter-spacing: -0.02em; }
+.adm-kpi-value small { font-size: 15px; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+.adm-kpi-sub { font-size: 12.5px; color: var(--muted); }
+.adm-kpi.is-high .adm-kpi-value { color: var(--high); }
+@media (max-width: 767.98px) {
+    .adm-kpis { grid-template-columns: repeat(2, 1fr); }
+    .adm-kpi:nth-child(2) { border-right: 0; }
+    .adm-kpi:nth-child(-n+2) { border-bottom: 1px solid var(--line-soft); }
+}
+
+.adm-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 20px; align-items: start; margin-bottom: 20px; }
+.adm-grid.is-even { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.adm-grid > .adm-panel + .adm-panel { margin-top: 0; }
+.adm-grid > .adm-stack > .adm-panel + .adm-panel { margin-top: 20px; }
+@media (max-width: 991.98px) { .adm-grid, .adm-grid.is-even { grid-template-columns: 1fr; } }
+
+/* tabel */
+.adm-table { width: 100%; border-collapse: collapse; }
+.adm-table th { padding: 9px 18px; font-size: 11.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; background: #fafbfb; }
+.adm-table td { padding: 11px 18px; border-bottom: 1px solid var(--line-soft); vertical-align: middle; }
+.adm-table tr:last-child td { border-bottom: 0; }
+.adm-table tbody tr:hover { background: #f9fbfb; }
+.adm-table a.adm-link { color: var(--ink); font-weight: 600; text-decoration: none; }
+.adm-table a.adm-link:hover { color: var(--accent-ink); text-decoration: underline; }
+.adm-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.adm-table .sub { display: block; font-size: 12.5px; color: var(--muted); }
+.adm-empty { padding: 28px 18px; text-align: center; color: var(--muted); }
+.adm-scroll { overflow-x: auto; }
+
+/* batang sebaran */
+.dist-bar { display: flex; height: 12px; border-radius: 3px; overflow: hidden; background: var(--line-soft); }
+.dist-bar span { display: block; height: 100%; }
+.dist-bar .is-tinggi { background: var(--high); } .dist-bar .is-sedang { background: var(--sand); }
+.dist-bar .is-rendah { background: #22c55e; } .dist-bar .is-belum { background: #c3d0d4; }
+.dist-list { list-style: none; margin: 14px 0 0; padding: 0; }
+.dist-list li { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--line-soft); }
+.dist-list li:last-child { border-bottom: 0; }
+.dist-list b { font-variant-numeric: tabular-nums; color: var(--ink); }
+.dist-list em { font-style: normal; color: var(--muted); margin-left: 8px; font-size: 12.5px; }
+
+/* hasil evaluasi */
+.outcome { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; text-align: center; }
+.outcome > div { padding: 4px 6px; border-right: 1px solid var(--line-soft); }
+.outcome > div:last-child { border-right: 0; }
+.outcome strong { display: block; font-size: 26px; line-height: 1.2; color: var(--ink); }
+.outcome span { font-size: 12.5px; color: var(--muted); }
+
+.chart-box { position: relative; height: 230px; }
+
+/* ---------------------------------------------------------------- halaman admin lama (Mazer) */
+.adm-content .page-heading { margin-bottom: 20px; }
+.adm-content .page-heading h3 { font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.adm-content .page-heading .text-subtitle { color: var(--muted); }
+.adm-content .breadcrumb { font-size: 13px; margin: 0; }
+.adm-content .card { border: 1px solid var(--line); border-radius: var(--radius); box-shadow: none; background: var(--panel); }
+.adm-content .card-header { background: transparent; border-bottom: 1px solid var(--line-soft); }
+.adm-content .card-title, .adm-content .card-header h4 { font-size: 15px; font-weight: 700; color: var(--ink); }
+.adm-content .table thead th { font-size: 11.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); background: #fafbfb; border-bottom: 1px solid var(--line); }
+.adm-content .table td { vertical-align: middle; }
+.adm-content .btn { border-radius: 6px; font-weight: 600; font-size: 13px; }
+.adm-content .btn-primary { --bs-btn-bg: var(--accent); --bs-btn-border-color: var(--accent); --bs-btn-hover-bg: var(--accent-ink); --bs-btn-hover-border-color: var(--accent-ink); --bs-btn-active-bg: var(--accent-ink); --bs-btn-active-border-color: var(--accent-ink); --bs-btn-disabled-bg: var(--accent); --bs-btn-disabled-border-color: var(--accent); }
+.adm-content .btn-outline-primary { --bs-btn-color: var(--accent); --bs-btn-border-color: var(--accent); --bs-btn-hover-bg: var(--accent); --bs-btn-hover-border-color: var(--accent); --bs-btn-active-bg: var(--accent); }
+.adm-content .form-control, .adm-content .form-select { border-color: var(--line); border-radius: 6px; font-size: 14px; }
+.adm-content .form-control:focus, .adm-content .form-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(22, 163, 74, .18); }
+.adm-content .form-label, .adm-content label { font-weight: 600; color: var(--ink-soft); }
+.adm-content .alert { border-radius: 6px; font-size: 13.5px; }
+.adm-content .alert-success { background: var(--low-wash); color: var(--low); border: 1px solid #bbf7d0; }
+.adm-content .alert-danger { background: var(--high-wash); color: var(--high); border: 1px solid #fecaca; }
+.adm-content .badge { font-weight: 600; border-radius: 4px; }
+.adm-content .page-link { color: var(--accent); }
+.adm-content .active > .page-link, .adm-content .page-link.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.dataTables_wrapper .dataTables_filter input, .dataTables_wrapper .dataTables_length select { border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; }
+table.dataTable thead th, table.dataTable thead td { border-bottom: 1px solid var(--line) !important; }
+
+/* tanda hubung "skip" untuk aksesibilitas keyboard */
+.adm-skip { position: absolute; left: -999px; }
+.adm-skip:focus { left: 8px; top: 8px; z-index: 2000; background: #fff; padding: 6px 10px; border-radius: 6px; }
