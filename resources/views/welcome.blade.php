@@ -41,14 +41,6 @@
             gap: 8px;
         }
 
-        .navbar-logo-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #22C55E, #0EA5E9);
-            flex-shrink: 0;
-        }
-
         .navbar-logo-text {
             font-size: 20px;
             font-weight: 700;
@@ -817,91 +809,16 @@
 
         .footer-bottom-links a:hover { color: #fff; }
 
-        /* ── Testimonials ───────────────────────────── */
-        #testimonials { background: #fff; }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .testimonial-card {
-            background: #fff;
-            border: 1px solid #E2E8F0;
-            border-radius: 16px;
-            padding: 28px 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            transition: box-shadow .2s, transform .2s;
-        }
-
-        .testimonial-card:hover {
-            box-shadow: 0 8px 24px rgba(0,0,0,.12);
-            transform: translateY(-2px);
-        }
-
-        .testimonial-stars {
-            display: flex;
-            gap: 4px;
-        }
-
-        .testimonial-stars svg { flex-shrink: 0; }
-
-        .testimonial-quote {
-            font-size: 14px;
-            color: #475569;
-            line-height: 1.7;
-            flex: 1;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-top: 12px;
-            border-top: 1px solid #F1F5F9;
-        }
-
-        .testimonial-avatar,
-        .testimonial-avatar-placeholder {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            background: #F0FDF4;
-        }
-
-        .testimonial-avatar {
-            object-fit: cover;
-        }
-
-        .testimonial-avatar-placeholder {
-            background: #DCFCE7;
-        }
-
-        .testimonial-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .testimonial-name {
-            font-size: 14px;
-            font-weight: 700;
-            color: #0F172A;
-            display: block;
-        }
-
-        .testimonial-role {
-            font-size: 12px;
-            color: #64748B;
-            display: block;
-        }
+        /* ── Urgensi ───────────────────────────────── */
+        #urgensi { background: #fff; }
+        .urgency-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+        .urgency-card { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 28px; }
+        .urgency-val { display: block; font-size: 40px; font-weight: 800; color: #16A34A; letter-spacing: -0.02em; line-height: 1.1; }
+        .urgency-lbl { display: block; margin-top: 8px; font-size: 15px; font-weight: 600; color: #0F172A; }
+        .urgency-note { display: block; margin-top: 6px; font-size: 13px; color: #64748B; line-height: 1.5; }
+        .urgency-source { max-width: 1100px; margin: 24px auto 0; font-size: 13px; color: #64748B; text-align: center; line-height: 1.6; }
+        .urgency-source a { color: #16A34A; }
+        .urgency-gap { max-width: 1100px; margin: 32px auto 0; background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 16px; padding: 24px 28px; color: #14532D; font-size: 16px; line-height: 1.6; }
 
         /* ── Footer ─────────────────────────────────── */
         footer {
@@ -1027,7 +944,7 @@
             .footer-bottom { padding: 0 48px; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .benefits-grid { grid-template-columns: repeat(3, 1fr); }
-            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .urgency-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 900px) {
@@ -1044,7 +961,7 @@
 
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .benefits-grid { grid-template-columns: repeat(2, 1fr); }
-            .testimonials-grid { grid-template-columns: 1fr; }
+            .urgency-grid { grid-template-columns: 1fr; }
 
             .steps-row { flex-direction: column; align-items: center; gap: 32px; }
             .step-arrow { transform: rotate(90deg); height: auto; width: auto; }
@@ -1065,7 +982,7 @@
         @media (max-width: 600px) {
             .features-grid { grid-template-columns: 1fr; }
             .benefits-grid { grid-template-columns: 1fr; }
-            .testimonials-grid { grid-template-columns: 1fr; }
+            .urgency-grid { grid-template-columns: 1fr; }
             .hero-title { font-size: 28px; }
             .section-title { font-size: 26px; }
             .cta-title { font-size: 24px; }
@@ -1087,7 +1004,7 @@
         <li><a href="#how-it-works">Cara Kerja</a></li>
         <li><a href="#benefits">Manfaat</a></li>
         <li><a href="#target-users">Pengguna</a></li>
-        <li><a href="#testimonials">Testimoni</a></li>
+        <li><a href="#urgensi">Urgensi</a></li>
     </ul>
 
     <div class="navbar-actions">
@@ -1105,7 +1022,7 @@
     <a href="#how-it-works">Cara Kerja</a>
     <a href="#benefits">Manfaat</a>
     <a href="#target-users">Pengguna</a>
-    <a href="#testimonials">Testimoni</a>
+    <a href="#urgensi">Urgensi</a>
     <div class="mobile-actions">
         <a href="{{ route('login') }}" class="btn-ghost">Masuk</a>
         <a href="{{ route('register') }}" class="btn-primary">Daftar Gratis</a>
@@ -1125,8 +1042,8 @@
         <h1 class="hero-title">Pantau Tumbuh Kembang Anak Secara Akurat</h1>
 
         <p class="hero-subtitle">
-            Berbasis standar WHO untuk deteksi dini masalah gizi dan stunting.
-            Platform digital yang mudah digunakan oleh orang tua, bidan, dan puskesmas.
+            Dari deteksi dini, penentuan prioritas, tindak lanjut, sampai evaluasi hasilnya.
+            Dipakai bersama oleh orang tua, kader posyandu, dan tenaga kesehatan.
         </p>
 
         <div class="hero-btns">
@@ -1139,7 +1056,7 @@
     <div class="hero-right">
         <div class="hero-card">
             <div class="hero-card-header">
-                <span class="hero-card-header-title">Grafik Pertumbuhan Anak</span>
+                <span class="hero-card-header-title">Contoh tampilan grafik</span>
                 <span class="badge-green">Normal</span>
             </div>
             <div class="hero-card-body">
@@ -1190,15 +1107,54 @@
 </section>
 
 <!-- ╔══════════════════════════════╗ -->
+<!-- ║           URGENSI            ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<section id="urgensi" class="section">
+    <div class="section-header">
+        <span class="section-label label-green">Mengapa Penting</span>
+        <h2 class="section-title">Stunting Masih Menjadi Pekerjaan Rumah Nasional</h2>
+        <p class="section-sub">Angka turun, tetapi masih di atas target. Deteksi dini yang ditindaklanjuti adalah kuncinya.</p>
+    </div>
+
+    <div class="urgency-grid">
+        <div class="urgency-card">
+            <span class="urgency-val">21,5%</span>
+            <span class="urgency-lbl">Prevalensi stunting balita, 2023</span>
+            <span class="urgency-note">Survei Status Gizi Indonesia (SSGI) 2023.</span>
+        </div>
+        <div class="urgency-card">
+            <span class="urgency-val">19,8%</span>
+            <span class="urgency-lbl">Prevalensi stunting balita, 2024</span>
+            <span class="urgency-note">SSGI 2024, di bawah target 20,1% tahun tersebut.</span>
+        </div>
+        <div class="urgency-card">
+            <span class="urgency-val">14,2%</span>
+            <span class="urgency-lbl">Target nasional 2029</span>
+            <span class="urgency-note">Sasaran RPJMN yang disampaikan Kementerian Kesehatan.</span>
+        </div>
+    </div>
+
+    <div class="urgency-gap">
+        Mengukur saja tidak cukup. Anak yang tertinggal perlu cepat terlihat, ditindaklanjuti,
+        dan hasilnya dinilai. Situmbuh dibuat untuk menutup celah antara pemantauan dan tindakan itu.
+    </div>
+
+    <p class="urgency-source">
+        Sumber: <a href="https://www.badankebijakan.kemkes.go.id/ssgi-2024" target="_blank" rel="noopener">Badan Kebijakan Pembangunan Kesehatan, Kemenkes RI &ndash; SSGI 2024</a>.
+        Situmbuh adalah prototipe lomba; belum diuji di lapangan.
+    </p>
+</section>
+
+<!-- ╔══════════════════════════════╗ -->
 <!-- ║          FEATURES            ║ -->
 <!-- ╚══════════════════════════════╝ -->
 <section id="features" class="section">
     <div class="section-header">
         <span class="section-label label-green">Fitur Unggulan</span>
-        <h2 class="section-title">Semua yang Anda Butuhkan dalam Satu Platform</h2>
+        <h2 class="section-title">Dari Pemantauan sampai Hasil yang Terukur</h2>
         <p class="section-sub">
-            Dirancang untuk orang tua, bidan, dan tenaga kesehatan agar pemantauan
-            tumbuh kembang anak menjadi mudah dan akurat.
+            Bukan sekadar mencatat angka: setiap data diarahkan menjadi prioritas,
+            tindakan, dan evaluasi.
         </p>
     </div>
 
@@ -1207,21 +1163,10 @@
             <div class="feat-icon feat-icon-green">
                 <i data-lucide="scale" style="color:#fff;width:24px;height:24px;"></i>
             </div>
-            <div class="feat-card-title">Pemantauan Pertumbuhan</div>
+            <div class="feat-card-title">Pemantauan dan Z-Score WHO</div>
             <p class="feat-card-desc">
-                Input data berat badan, tinggi badan, dan usia anak secara mudah.
-                Riwayat lengkap tersimpan dan dapat diakses kapan saja.
-            </p>
-        </div>
-
-        <div class="feature-card feat-card-blue">
-            <div class="feat-icon feat-icon-blue">
-                <i data-lucide="bar-chart-2" style="color:#fff;width:24px;height:24px;"></i>
-            </div>
-            <div class="feat-card-title">Analisis Z-Score WHO</div>
-            <p class="feat-card-desc">
-                Sistem menghitung Z-score secara otomatis sesuai standar WHO untuk
-                menentukan status gizi anak dengan presisi tinggi.
+                Catat berat, tinggi, dan lingkar kepala. Status gizi dihitung dari tabel
+                standar pertumbuhan WHO dan ditampilkan pada grafik berpita yang mudah dibaca.
             </p>
         </div>
 
@@ -1229,21 +1174,32 @@
             <div class="feat-icon feat-icon-orange">
                 <i data-lucide="triangle-alert" style="color:#fff;width:24px;height:24px;"></i>
             </div>
-            <div class="feat-card-title">Deteksi Dini Stunting</div>
+            <div class="feat-card-title">Prioritas dengan Alasan</div>
             <p class="feat-card-desc">
-                Identifikasi risiko stunting dan masalah gizi lebih awal dengan
-                klasifikasi otomatis: normal, kurang gizi, stunting, dan obesitas.
+                Anak yang paling perlu ditinjau diurutkan otomatis, lengkap dengan faktor
+                penyebabnya. Skor ini alat bantu urutan, bukan diagnosis.
+            </p>
+        </div>
+
+        <div class="feature-card feat-card-blue">
+            <div class="feat-icon feat-icon-blue">
+                <i data-lucide="clipboard-check" style="color:#fff;width:24px;height:24px;"></i>
+            </div>
+            <div class="feat-card-title">Tindak Lanjut dan Evaluasi</div>
+            <p class="feat-card-desc">
+                Kader membuat tindak lanjut, menandainya selesai, lalu sistem membandingkan
+                kondisi sebelum dan sesudah untuk melihat dampaknya.
             </p>
         </div>
 
         <div class="feature-card feat-card-purple">
             <div class="feat-icon feat-icon-purple">
-                <i data-lucide="layout-dashboard" style="color:#fff;width:24px;height:24px;"></i>
+                <i data-lucide="message-circle" style="color:#fff;width:24px;height:24px;"></i>
             </div>
-            <div class="feat-card-title">Dashboard Lengkap</div>
+            <div class="feat-card-title">Asisten AI dan Skrining KPSP</div>
             <p class="feat-card-desc">
-                Tampilan berbeda untuk orang tua dan tenaga kesehatan. Bidan bisa
-                memantau banyak anak sekaligus dalam satu dashboard.
+                Orang tua bisa bertanya kepada asisten yang membaca ringkasan data anak,
+                dan mengisi skrining perkembangan KPSP sesuai usia.
             </p>
         </div>
     </div>
@@ -1255,10 +1211,9 @@
 <section id="how-it-works" class="section section-alt">
     <div class="section-header">
         <span class="section-label label-blue">Cara Kerja</span>
-        <h2 class="section-title">Tiga Langkah Mudah Memantau Tumbuh Kembang</h2>
+        <h2 class="section-title">Tiga Langkah dari Data sampai Tindakan</h2>
         <p class="section-sub">
-            Cukup tiga langkah sederhana untuk mendapatkan analisis pertumbuhan anak
-            yang akurat dan terpercaya.
+            Alurnya sederhana, tetapi tidak berhenti di pencatatan.
         </p>
     </div>
 
@@ -1267,8 +1222,8 @@
             <div class="step-num step-num-green">1</div>
             <div class="step-title">Input Data Anak</div>
             <p class="step-desc">
-                Masukkan data berat badan, tinggi badan, dan usia anak.
-                Bisa dilakukan oleh orang tua atau tenaga kesehatan.
+                Orang tua atau kader memasukkan berat badan, tinggi badan, dan ukuran lain
+                setiap kali anak diukur.
             </p>
         </div>
 
@@ -1278,10 +1233,10 @@
 
         <div class="step">
             <div class="step-num step-num-blue">2</div>
-            <div class="step-title">Analisis Otomatis</div>
+            <div class="step-title">Status dan Prioritas</div>
             <p class="step-desc">
-                Sistem menganalisis data secara otomatis menggunakan standar Z-score WHO
-                untuk menentukan status gizi anak.
+                Sistem menghitung Z-score WHO, lalu mengurutkan anak yang paling perlu
+                ditinjau beserta alasannya.
             </p>
         </div>
 
@@ -1291,10 +1246,10 @@
 
         <div class="step">
             <div class="step-num step-num-purple">3</div>
-            <div class="step-title">Lihat Hasil &amp; Rekomendasi</div>
+            <div class="step-title">Tindak Lanjut dan Evaluasi</div>
             <p class="step-desc">
-                Dapatkan laporan visual lengkap beserta rekomendasi tindakan yang perlu
-                diambil untuk tumbuh kembang optimal anak.
+                Kader mencatat tindakan dan hasilnya. Pengukuran berikutnya menunjukkan
+                apakah kondisi anak membaik, tetap, atau memburuk.
             </p>
         </div>
     </div>
@@ -1314,24 +1269,24 @@
             <div class="benefit-icon benf-icon-green">
                 <i data-lucide="shield-check" style="width:24px;height:24px;"></i>
             </div>
-            <span class="benefit-title-text">Standar WHO Terverifikasi</span>
-            <p class="benefit-desc-text">Algoritma Z-score sesuai panduan WHO 2006 yang diakui secara internasional untuk akurasi tertinggi.</p>
+            <span class="benefit-title-text">Mengacu pada Standar WHO</span>
+            <p class="benefit-desc-text">Perhitungan Z-score memakai tabel standar pertumbuhan anak WHO 2006, sehingga status gizi dibaca dengan acuan yang sama dengan layanan kesehatan.</p>
         </div>
 
         <div class="benefit-card">
             <div class="benefit-icon benf-icon-blue">
-                <i data-lucide="zap" style="width:24px;height:24px;"></i>
+                <i data-lucide="eye" style="width:24px;height:24px;"></i>
             </div>
-            <span class="benefit-title-text">Hasil Instan &amp; Akurat</span>
-            <p class="benefit-desc-text">Analisis status gizi dilakukan secara real-time. Tidak perlu menunggu—hasil langsung tersedia setelah input data.</p>
+            <span class="benefit-title-text">Transparan, Bukan Kotak Hitam</span>
+            <p class="benefit-desc-text">Setiap skor prioritas disertai faktor dan nilainya. Keputusan klinis tetap berada pada tenaga kesehatan.</p>
         </div>
 
         <div class="benefit-card">
             <div class="benefit-icon benf-icon-yellow">
                 <i data-lucide="lock" style="width:24px;height:24px;"></i>
             </div>
-            <span class="benefit-title-text">Keamanan Data Terjamin</span>
-            <p class="benefit-desc-text">Data anak Anda dienkripsi dan dilindungi. Kami tidak pernah membagikan data pribadi kepada pihak ketiga.</p>
+            <span class="benefit-title-text">Akses Dibatasi per Anak</span>
+            <p class="benefit-desc-text">Orang tua hanya melihat anaknya sendiri, kader dan tenaga kesehatan hanya anak yang ditugaskan. Asisten AI menerima ringkasan tanpa NIK, nomor telepon, atau nama orang tua.</p>
         </div>
     </div>
 </section>
@@ -1353,8 +1308,8 @@
             <span class="user-card-tag tag-green">Orang Tua</span>
             <div class="user-card-title">Pantau Anak Anda dari Rumah</div>
             <p class="user-card-desc">
-                Input data anak kapan saja, lihat grafik pertumbuhan, dan terima
-                notifikasi jika ada yang perlu diperhatikan.
+                Catat pengukuran kapan saja, lihat grafik pertumbuhan, dan baca
+                ringkasan status anak dengan bahasa sederhana.
             </p>
         </div>
 
@@ -1362,11 +1317,11 @@
             <div class="user-card-img user-img-blue">
                 <i data-lucide="stethoscope" style="width:56px;height:56px;"></i>
             </div>
-            <span class="user-card-tag tag-blue">Bidan</span>
-            <div class="user-card-title">Efisiensi Pelayanan Lebih Tinggi</div>
+            <span class="user-card-tag tag-blue">Kader dan Tenaga Kesehatan</span>
+            <div class="user-card-title">Tahu Siapa yang Harus Ditangani Dulu</div>
             <p class="user-card-desc">
-                Kelola data banyak anak sekaligus dalam satu dashboard. Rekap otomatis
-                menghemat waktu administrasi di lapangan.
+                Daftar anak terurut berdasarkan prioritas, lengkap dengan alasan dan
+                tindak lanjut yang masih berjalan.
             </p>
         </div>
 
@@ -1374,11 +1329,11 @@
             <div class="user-card-img user-img-purple">
                 <i data-lucide="building-2" style="width:56px;height:56px;"></i>
             </div>
-            <span class="user-card-tag tag-purple">Puskesmas</span>
-            <div class="user-card-title">Laporan &amp; Rekapitulasi Mudah</div>
+            <span class="user-card-tag tag-purple">Pengelola Layanan</span>
+            <div class="user-card-title">Gambaran Besar dalam Satu Layar</div>
             <p class="user-card-desc">
-                Generate laporan bulanan stunting dan gizi otomatis. Data siap untuk
-                pelaporan ke dinas kesehatan setempat.
+                Dasbor sebaran prioritas, pemantauan yang terlewat, penyelesaian tindak
+                lanjut, dan laporan stunting.
             </p>
         </div>
     </div>
@@ -1390,74 +1345,13 @@
 <section id="cta">
     <h2 class="cta-title">Mulai Pantau Tumbuh Kembang Anak Anda Sekarang</h2>
     <p class="cta-sub">
-        Bergabung dengan ribuan orang tua dan tenaga kesehatan yang telah menggunakan
-        Situmbuh untuk pemantauan gizi anak yang lebih baik.
+        Daftar, tambahkan data anak, dan lihat bagaimana data pertumbuhan berubah
+        menjadi prioritas dan tindakan.
     </p>
 
     <div class="cta-btns">
         <a href="{{ route('register') }}" class="btn-cta-white">Mulai Gratis Sekarang</a>
-        <a href="mailto:hello@situmbuh.id" class="btn-cta-outline">Hubungi Kami</a>
-    </div>
-
-    <div class="cta-stats">
-        <div class="cta-stat">
-            <span class="cta-stat-val">10.000+</span>
-            <span class="cta-stat-lbl">Anak Terpantau</span>
-        </div>
-        <div class="cta-stat-div"></div>
-        <div class="cta-stat">
-            <span class="cta-stat-val">500+</span>
-            <span class="cta-stat-lbl">Tenaga Kesehatan</span>
-        </div>
-        <div class="cta-stat-div"></div>
-        <div class="cta-stat">
-            <span class="cta-stat-val">50+</span>
-            <span class="cta-stat-lbl">Puskesmas Mitra</span>
-        </div>
-    </div>
-</section>
-
-<!-- ╔══════════════════════════════╗ -->
-<!-- ║       TESTIMONIALS           ║ -->
-<!-- ╚══════════════════════════════╝ -->
-<section id="testimonials" class="section">
-    <div class="section-header">
-        <span class="section-label label-green">Testimoni Pengguna</span>
-        <h2 class="section-title">Kepercayaan dari Ribuan Pengguna Situmbuh</h2>
-        <p class="section-sub">Dengarkan langsung pengalaman orang tua, bidan, dan tenaga kesehatan yang telah merasakan manfaat Situmbuh</p>
-    </div>
-
-    <div class="testimonials-grid">
-        @forelse($testimoni ?? [] as $testimonial)
-            <div class="testimonial-card">
-                <div class="testimonial-stars">
-                    @for($i = 0; $i < ($testimonial->rating ?? 5); $i++)
-                        <i data-lucide="star" style="width:16px;height:16px;color:#FBBF24;fill:#FBBF24;"></i>
-                    @endfor
-                </div>
-
-                <p class="testimonial-quote">{{ $testimonial->message }}</p>
-
-                <div class="testimonial-author">
-                    @if($testimonial->user && $testimonial->user->avatar)
-                        <img src="{{ asset($testimonial->user->avatar) }}" alt="{{ $testimonial->user->name }}" class="testimonial-avatar">
-                    @else
-                        <div class="testimonial-avatar-placeholder">
-                            <i data-lucide="user" style="width:16px;height:16px;color:#16A34A;"></i>
-                        </div>
-                    @endif
-
-                    <div class="testimonial-info">
-                        <span class="testimonial-name">{{ $testimonial->user->name ?? 'Pengguna' }}</span>
-                        <span class="testimonial-role">{{ $testimonial->user->role ?? 'Pengguna Situmbuh' }}</span>
-                    </div>
-                </div>
-            </div>
-        @empty
-            <div style="grid-column: 1 / -1; text-align: center; padding: 40px 0; color: #94A3B8;">
-                <p>Belum ada testimoni untuk ditampilkan</p>
-            </div>
-        @endforelse
+        <a href="{{ route('login') }}" class="btn-cta-outline">Sudah punya akun? Masuk</a>
     </div>
 </section>
 
@@ -1474,41 +1368,23 @@
                 Platform digital pemantauan tumbuh kembang anak berbasis standar WHO
                 untuk Indonesia yang lebih sehat.
             </p>
-            <div class="footer-social">
-                <a href="#" class="footer-soc-btn" aria-label="Twitter">
-                    <i data-lucide="twitter" style="width:16px;height:16px;"></i>
-                </a>
-                <a href="#" class="footer-soc-btn" aria-label="Instagram">
-                    <i data-lucide="instagram" style="width:16px;height:16px;"></i>
-                </a>
-                <a href="#" class="footer-soc-btn" aria-label="LinkedIn">
-                    <i data-lucide="linkedin" style="width:16px;height:16px;"></i>
-                </a>
-            </div>
         </div>
 
         <div class="footer-nav">
             <span class="footer-nav-title">Produk</span>
             <a href="#features">Fitur</a>
             <a href="#how-it-works">Cara Kerja</a>
-            <a href="#">Harga</a>
-            <a href="#">Panduan Pengguna</a>
+            <a href="#urgensi">Urgensi</a>
         </div>
 
         <div class="footer-nav">
-            <span class="footer-nav-title">Perusahaan</span>
-            <a href="#">Tentang Kami</a>
-            <a href="#">Blog</a>
-            <a href="#">Karier</a>
-            <a href="#">Pers &amp; Media</a>
+            <span class="footer-nav-title">Akun</span>
+            <a href="{{ route('login') }}">Masuk</a>
+            <a href="{{ route('register') }}">Daftar</a>
         </div>
 
         <div class="footer-contact">
             <span class="footer-nav-title">Hubungi Kami</span>
-            <div class="footer-contact-item">
-                <i data-lucide="mail" style="width:15px;height:15px;color:#22C55E;"></i>
-                <span>hello@situmbuh.id</span>
-            </div>
             <div class="footer-contact-item">
                 <i data-lucide="phone" style="width:15px;height:15px;color:#22C55E;"></i>
                 <span>+62 812-1186-7462</span>
@@ -1521,12 +1397,7 @@
     </div>
 
     <div class="footer-bottom">
-        <span class="footer-copy">© 2025 Situmbuh. Hak Cipta Dilindungi.</span>
-        <div class="footer-bottom-links">
-            <a href="#">Kebijakan Privasi</a>
-            <a href="#">Syarat &amp; Ketentuan</a>
-            <a href="#">Cookie</a>
-        </div>
+        <span class="footer-copy">© 2026 Situmbuh. Prototipe ICONFEST 2026.</span>
     </div>
 </footer>
 

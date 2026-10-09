@@ -18,7 +18,6 @@
         .auth-hero::before { content: ''; position: absolute; width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,.09); right: -60px; top: -70px; }
         .auth-hero::after { content: ''; position: absolute; width: 110px; height: 110px; border-radius: 50%; background: rgba(201,243,228,.2); left: -30px; bottom: -40px; }
         .auth-brand { display: inline-flex; align-items: center; gap: 9px; color: #fff; font-weight: 800; font-size: 22px; text-decoration: none; position: relative; z-index: 1; }
-        .auth-brand::before { content: ''; width: 28px; height: 28px; border-radius: 9px 9px 9px 4px; background: linear-gradient(135deg, #22c55e, #0ea5e9); border: 2px solid #fff; }
         .auth-hero h1 { color: #fff; font-size: 28px; margin: 26px 0 4px; position: relative; z-index: 1; }
         .auth-hero p { color: #dcfce7; margin: 0; position: relative; z-index: 1; }
         .auth-card { margin: -56px 16px 0; position: relative; z-index: 2; }
