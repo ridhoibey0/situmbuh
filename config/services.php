@@ -23,10 +23,10 @@ return [
 
     'support_whatsapp' => env('SUPPORT_WHATSAPP', '6287700383768'),
 
-    'gemini' => [
-        'key' => env('GEMINI_API_KEY'),
-        // Model dapat diganti lewat .env bila Google menghentikan model lama.
-        'model' => env('GEMINI_MODEL', 'gemini-3.8-flash'),
+    'sumopod' => [
+        'key' => env('SUMOPOD_API_KEY'),
+        'url' => env('SUMOPOD_BASE_URL', 'https://ai.sumopod.com/v1'),
+        'model' => env('SUMOPOD_MODEL', 'deepseek-v4-flash-0731:netra'),
     ],
 
     'postmark' => [

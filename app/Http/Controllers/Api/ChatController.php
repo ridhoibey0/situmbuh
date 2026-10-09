@@ -84,38 +84,39 @@ class ChatController extends Controller
     private function getAIResponse(string $message, ?string $childContext, $history): string
     {
         try {
-            $apiKey = config('services.gemini.key');
+            $apiKey = config('services.sumopod.key');
 
             if (!$apiKey) {
-                \Log::warning('GEMINI_API_KEY belum dikonfigurasi.');
+                \Log::warning('SUMOPOD_API_KEY belum dikonfigurasi.');
                 return 'Maaf, layanan asisten belum tersedia.';
             }
 
-            $contents = $history->map(fn($m) => [
-                'role' => $m->sender === 'user' ? 'user' : 'model',
-                'parts' => [['text' => $m->message]],
-            ])->all();
-            $contents[] = ['role' => 'user', 'parts' => [['text' => $message]]];
+            $messages = [['role' => 'system', 'content' => AssistantPrompt::system($childContext)]];
+            foreach ($history as $m) {
+                $messages[] = ['role' => $m->sender === 'user' ? 'user' : 'assistant', 'content' => $m->message];
+            }
+            $messages[] = ['role' => 'user', 'content' => $message];
 
-            $response = Http::withHeaders([
-                'Content-Type' => 'application/json',
-                'x-goog-api-key' => $apiKey,
-            ])->post('https://generativelanguage.googleapis.com/v1beta/models/' . config('services.gemini.model') . ':generateContent', [
-                'system_instruction' => ['parts' => [['text' => AssistantPrompt::system($childContext)]]],
-                'contents' => $contents,
-            ]);
+            $response = Http::withToken($apiKey)
+                ->acceptJson()
+                ->timeout(60)
+                ->post(rtrim(config('services.sumopod.url'), '/') . '/chat/completions', [
+                    'model' => config('services.sumopod.model'),
+                    'messages' => $messages,
+                    'max_tokens' => 800,
+                    'temperature' => 0.4,
+                ]);
 
-            $responseData = $response->json();
+            $text = $response->json('choices.0.message.content');
 
-            if (isset($responseData['candidates'][0]['content']['parts'][0]['text'])) {
-                return $responseData['candidates'][0]['content']['parts'][0]['text'];
+            if (is_string($text) && trim($text) !== '') {
+                return trim($text);
             }
 
-            // Penyebab umum: model dihentikan (404), kredit/kuota habis, atau kunci tidak valid.
-            \Log::error('Gemini API error (' . $response->status() . '): ' . json_encode($responseData));
+            \Log::error('Sumopod API error (' . $response->status() . '): ' . $response->body());
             return 'Maaf, asisten sedang tidak tersedia. Silakan coba lagi nanti atau hubungi kader.';
         } catch (\Exception $e) {
-            \Log::error('Error calling Gemini API: ' . $e->getMessage());
+            \Log::error('Error calling Sumopod API: ' . $e->getMessage());
             return 'Maaf, terjadi kesalahan saat menghubungi layanan AI.';
         }
     }

@@ -23,7 +23,7 @@ class ChatContextTest extends TestCase
         parent::setUp();
 
         Carbon::setTestNow('2026-10-07 08:00:00');
-        config(['services.gemini.key' => 'test-key']);
+        config(['services.sumopod.key' => 'test-key']);
 
         foreach (['TB/U' => [70.6, 2.6], 'BB/U' => [8.6, 1.0]] as $parameter => [$median, $sd]) {
             WhoGrowthStandard::create([
@@ -81,8 +81,8 @@ class ChatContextTest extends TestCase
     {
         $parent = User::factory()->create();
         $this->riskyChild($parent);
-        Http::fake(['generativelanguage.googleapis.com/*' => Http::response([
-            'candidates' => [['content' => ['parts' => [['text' => 'Halo, Budi tumbuh dengan baik.']]]]],
+        Http::fake(['ai.sumopod.com/*' => Http::response([
+            'choices' => [['message' => ['role' => 'assistant', 'content' => 'Halo, Budi tumbuh dengan baik.']]],
         ])]);
 
         $session = ChatSession::create(['user_id' => $parent->id]);
@@ -95,28 +95,32 @@ class ChatContextTest extends TestCase
             ->assertJsonPath('messages.0.message', 'Halo, Budi tumbuh dengan baik.');
 
         Http::assertSent(function ($request) {
-            $system = $request['system_instruction']['parts'][0]['text'];
-            $contents = $request['contents'];
+            $messages = $request['messages'];
+            $system = $messages[0]['content'];
 
-            return str_contains($system, 'Nama panggilan: Budi')
+            return $request->url() === 'https://ai.sumopod.com/v1/chat/completions'
+                && $request->hasHeader('Authorization', 'Bearer test-key')
+                && $request['model'] === 'deepseek-v4-flash-0731:netra'
+                && $messages[0]['role'] === 'system'
+                && str_contains($system, 'Nama panggilan: Budi')
                 && str_contains($system, 'Berat badan')
                 && str_contains($system, 'Jangan mendiagnosis')
-                && count($contents) === 3
-                && $contents[0]['role'] === 'user' && $contents[1]['role'] === 'model'
-                && $contents[2]['parts'][0]['text'] === 'Bagaimana kondisi anak saya?';
+                && count($messages) === 4
+                && $messages[1]['role'] === 'user' && $messages[2]['role'] === 'assistant'
+                && $messages[3] === ['role' => 'user', 'content' => 'Bagaimana kondisi anak saya?'];
         });
     }
 
     public function test_chat_without_child_gets_general_prompt(): void
     {
         $parent = User::factory()->create();
-        Http::fake(['generativelanguage.googleapis.com/*' => Http::response([
-            'candidates' => [['content' => ['parts' => [['text' => 'Z-score adalah ...']]]]],
+        Http::fake(['ai.sumopod.com/*' => Http::response([
+            'choices' => [['message' => ['role' => 'assistant', 'content' => 'Z-score adalah ...']]],
         ])]);
 
         $this->actingAs($parent)->postJson(route('chat.send'), ['message' => 'Apa itu Z-score?'])->assertOk();
 
-        Http::assertSent(fn($request) => str_contains($request['system_instruction']['parts'][0]['text'], 'Tidak ada data anak'));
+        Http::assertSent(fn($request) => str_contains($request['messages'][0]['content'], 'Tidak ada data anak'));
     }
 
     public function test_chat_uses_the_active_child_not_a_siblings_data(): void
@@ -124,13 +128,13 @@ class ChatContextTest extends TestCase
         $parent = User::factory()->create();
         $first = Child::factory()->create(['parent_id' => $parent->id, 'name' => 'Pertama', 'gender' => 'male', 'bod' => '2026-01-27']);
         $second = Child::factory()->create(['parent_id' => $parent->id, 'name' => 'Kedua', 'gender' => 'male', 'bod' => '2026-01-27']);
-        Http::fake(['generativelanguage.googleapis.com/*' => Http::response(['candidates' => [['content' => ['parts' => [['text' => 'ok']]]]]])]);
+        Http::fake(['ai.sumopod.com/*' => Http::response(['choices' => [['message' => ['content' => 'ok']]]])]);
 
         $this->actingAs($parent)->post(route('children.select', $second));
         $this->postJson(route('chat.send'), ['message' => 'Halo'])->assertOk();
 
-        Http::assertSent(fn($r) => str_contains($r['system_instruction']['parts'][0]['text'], 'Nama panggilan: Kedua')
-            && !str_contains($r['system_instruction']['parts'][0]['text'], 'Pertama'));
+        Http::assertSent(fn($r) => str_contains($r['messages'][0]['content'], 'Nama panggilan: Kedua')
+            && !str_contains($r['messages'][0]['content'], 'Pertama'));
     }
 
     public function test_chat_page_shows_child_specific_suggestions(): void
@@ -146,14 +150,14 @@ class ChatContextTest extends TestCase
 
     public function test_chat_uses_configured_model_and_reports_api_failures_clearly(): void
     {
-        config(['services.gemini.model' => 'model-uji']);
+        config(['services.sumopod.model' => 'model-uji']);
         $parent = User::factory()->create();
-        Http::fake(['generativelanguage.googleapis.com/*' => Http::response(['error' => ['code' => 404, 'message' => 'model gone']], 404)]);
+        Http::fake(['ai.sumopod.com/*' => Http::response(['error' => ['message' => 'insufficient credits']], 402)]);
 
         $this->actingAs($parent)->postJson(route('chat.send'), ['message' => 'Halo'])
             ->assertOk()
             ->assertJsonPath('messages.0.message', 'Maaf, asisten sedang tidak tersedia. Silakan coba lagi nanti atau hubungi kader.');
 
-        Http::assertSent(fn($request) => str_contains($request->url(), '/models/model-uji:generateContent'));
+        Http::assertSent(fn($request) => str_contains($request->url(), '/chat/completions') && $request['model'] === 'model-uji');
     }
 }

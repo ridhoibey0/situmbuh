@@ -30,7 +30,7 @@ Semua bobot dan ambang ada di [config/risk.php](config/risk.php). Ambang Z-score
 
 ```bash
 composer install
-cp .env.example .env && php artisan key:generate   # atur DB_* dan GEMINI_API_KEY (opsional)
+cp .env.example .env && php artisan key:generate   # atur DB_* dan SUMOPOD_API_KEY (untuk asisten AI, opsional)
 php artisan migrate
 php artisan db:seed --class=WHOGrowthStandardsSeeder
 php artisan db:seed --class=DemoSeeder             # data demo fiktif (opsional)
