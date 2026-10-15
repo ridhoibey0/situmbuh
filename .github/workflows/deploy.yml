@@ -1,0 +1,31 @@
+name: Deploy to situmbuh.ridhoazkiaa.dev
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      seed:
+        description: "Jalankan ProductionSeeder? (true/false)"
+        required: false
+        default: "false"
+
+concurrency:
+  group: deploy-situmbuh
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH (git pull + build di VPS)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script: |
+            export DEPLOY_BRANCH=main
+            export RUN_SEED=${{ github.event.inputs.seed || 'false' }}
+            bash /var/www/situmbuh/deploy.sh
